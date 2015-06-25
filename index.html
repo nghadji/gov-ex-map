@@ -57,54 +57,38 @@
         <table>
             <tr><th class="tHeader">Name</th><th class="tHeader">Address</th><th class="tHeader">City</th><th class="tHeader">State</th><th class="tHeader">Country</th><th class="">Elsewhere</th></tr>
             {{#rows}}
-                <tr id="{{rowNumber}}" class="spotRow"><td>{{name}}</td><td>{{address}}</td><td>{{city}}</td><td>{{state}}</td><td>{{country}}</td><td><a class="button" href="https://maps.google.com/maps?q={{address}},{{city}},{{state}}" target="_blank">G Map</a> <a class="button" href="http://www.yelp.com/search?find_desc={{name}}&find_loc={{city}},{{state}}" target="_blank">Yelp</a></td></tr>
+                <tr id="{{rowNumber}}" class="spotRow"><td>{{name}}</td><td>{{workscope_1}}</td><td>{{workscope_2}}</td><td>{{leadsenior}}</td><td>{{analyst}}</td><td>{{assessment_date}}</td>
+                </tr>
             {{/rows}}
         </table>
     </script>
 
     <script id="latestSpot" type="text/html">
         {{#rows}}
-            <h4 class="fauxButton">MOST RECENT SPOT</h4>
+            <h4 class="fauxButton">City</h4>
             <h2>{{name}}</h2>
-            <p class="colorText">{{address}}<p>
-            <p class="colorText">{{city}}{{#state}}, {{state}}{{/state}}{{#postcode}}, {{postcode}}{{/postcode}}</p>
+            <p class="colorText">{{lat_long}}<p>
             <ul>
-                <li><span class="category">Wifi:</span> {{wifipassword}}</li>
-                <li><span class="category">Outlets:</span> {{outlets}}</li>
-                <li><span class="category">Couch:</span> {{couch}}</li>
-                <li><span class="category">Large Table:</span> {{largetable}}</li>
-                <li><span class="category">Outdoor Seating:</span> {{outdoorseating}}</li>
-                <li><span class="category">Brewing:</span> {{brewing}}</li>
-                <li><span class="category">Contributed By:</span> <a href="http://www.twitter.com/{{contributerstwitter}}" target="_blank">@{{contributerstwitter}}</a></li>
-            </ul>
-            <ul>
-                <li><a href="https://maps.google.com/maps?q={{address}},{{city}},{{state}}" target="_blank">View in Google Maps</a></li>
-                <li><a href="http://www.yelp.com/search?find_desc={{name}}&find_loc={{city}},{{state}}" target="_blank">Find on Yelp</a></li>
+                <li><span class="category">Work Scope:</span> {{workscope_1}}</li>
+                <li><span class="category">Work Scope2:</span> {{workscope_2}}</li>
+                <li><span class="category">Lead Senior Analyst:</span> {{leadsenior}}</li>
+                <li><span class="category">Lead Analyst:</span> {{analyst}}</li>
+                <li><span class="category">Assessment_Date:</span> {{assessment_date}}</li>
             </ul>
         {{/rows}}
-    </script>
-
-    <script id="theNumberofSpots" type="text/html">
-        <p><strong><span class="red-text">{{numberOfSpots}}</span> hack spots strong!</p>
     </script>
 
     <script id="selectedSpot" type="text/html">
         {{#rows}}
             <h4 class="fauxButton">SELECTED SPOT</h4>
             <h2>{{name}}</h2>
-            <p class="colorText">{{address}}<p>
-            <p class="colorText">{{city}}{{#state}}, {{state}}{{/state}}{{#postcode}}, {{postcode}}{{/postcode}}</p>
+            <p class="colorText">{{lat_long}}<p>
             <ul>
-                <li><span class="category">Wifi:</span> {{wifipassword}}</li>
-                <li><span class="category">Outlets:</span> {{outlets}}</li>
-                <li><span class="category">Couch:</span> {{couch}}</li>
-                <li><span class="category">Large Table:</span> {{largetable}}</li>
-                <li><span class="category">Outdoor Seating:</span> {{outdoorseating}}</li>
-                <li><span class="category">Brewing:</span> {{brewing}}</li>
-            </ul>
-            <ul>
-                <li><a href="https://maps.google.com/maps?q={{address}},{{city}},{{state}}" target="_blank">View in Google Maps</a></li>
-                <li><a href="http://www.yelp.com/search?find_desc={{name}}&find_loc={{city}},{{state}}" target="_blank">Find on Yelp</a></li>
+                <li><span class="category">Work Scope:</span> {{workscope_1}}</li>
+                <li><span class="category">Work Scope2:</span> {{workscope_2}}</li>
+                <li><span class="category">Lead Senior Analyst:</span> {{leadsenior}}</li>
+                <li><span class="category">Lead Analyst:</span> {{analyst}}</li>
+                <li><span class="category">Assessment_Date:</span> {{assessment_date}}</li>
             </ul>
         {{/rows}}
     </script>
@@ -112,7 +96,7 @@
     <script type="text/javascript">
         document.addEventListener('DOMContentLoaded', function() {
             var gData
-            var URL = "1hnfQcggYcBYimuO_UOMvwoOi_I9vUvFpkMt4wjrrpLE"
+            var URL = "https://docs.google.com/spreadsheets/d/1Jt5BDz75pp8CaNBigeLHD9j79N4K5ZCUIbN1dwHo5Jo/pubhtml?gid=2020778140&single=true"
                 Tabletop.init({ key: URL, callback: showInfo, simpleSheet: true })
         })
 
@@ -129,7 +113,7 @@
 
             // create geoJSON with coordinates and other
             // useful bits from the original data
-            var optionsJSON = ["name", "address", "city", "rowNumber"]
+            var optionsJSON = ["name", "lat_long", "desc", "rowNumber"]
             var geoJSON = Sheetsee.createGeoJSON(gData, optionsJSON)
 
             // create map, tilelayer (map background), markers and popups
@@ -172,7 +156,7 @@
                 var latestCompleteSpot = []
                 var startWithLatestRow = data.reverse()
                 startWithLatestRow.forEach(function(row){
-                    if (!row.lat || !row.long || !row.name || !row.address || !row.city || !row.state ) return
+                    if (!row.lat || !row.long || !row.name || !row.leadsenior || !row.analyst || !row.workscope_1 || !row.workscope_2 || !row.assessment_date ) return
                     else latestCompleteSpot.push(row)
                 })
                 return latestCompleteSpot[0]
