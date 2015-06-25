@@ -56,7 +56,7 @@
     <script id="assignmentsTable" type="text/html">
         <table>
             <tr><th class="tHeader">Name</th><th class="tHeader">Work Scope</th><th class="tHeader">Work Scope2</th><th class="tHeader">Lead Senior Analyst</th><th class="tHeader">Lead Analyst</th><th class="">Assessment_Date</th></tr>
-            {{rows}}
+            {{#rows}}
                 <tr id="{{rowNumber}}" class="spotRow"><td>{{name}}</td><td>{{workscope_1}}</td><td>{{workscope_2}}</td><td>{{leadsenior}}</td><td>{{analyst}}</td><td>{{assessment_date}}</td>
                 </tr>
             {{/rows}}
@@ -80,7 +80,7 @@
     </script>
 
     <script id="selectedSpot" type="text/html">
-        {{rows}}
+        {{#rows}}
             <h4 class="fauxButton">SELECTED SPOT</h4>
             <h2>{{name}}</h2>
             <p class="colorText">{{assessment_date}}<p>
