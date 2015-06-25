@@ -115,13 +115,13 @@
 
             // create geoJSON with coordinates and other
             // useful bits from the original data
-            var optionsJSON = ["name", "lat_long", "desc", "workscope_1", "workscope_2", "assessment_date", "rowNumber"]
+            var optionsJSON = ["name", "lat_long", "desc", "workscope_1", "workscope_2", "leadsenior", "analyst" "assessment_date", "rowNumber"]
             var geoJSON = Sheetsee.createGeoJSON(gData, optionsJSON)
 
             // create map, tilelayer (map background), markers and popups
             var map = Sheetsee.loadMap("map")
             Sheetsee.addTileLayer(map, 'examples.map-20v6611k')
-            var markerLayer = Sheetsee.addMarkerLayer(geoJSON, map, "<h2>{{ name }}, {{workscope_1}}, {workscope_2}}</h2>")
+            var markerLayer = Sheetsee.addMarkerLayer(geoJSON, map, "<h2>{{ name }}</h2>" , "<h2>{{ workscope_1 }}</h2>")
 
             // find the latest spot with the most important
             // info filled in (to prevent map breaking if
