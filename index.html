@@ -55,7 +55,7 @@
 
     <script id="assignmentsTable" type="text/html">
         <table>
-            <tr><th class="tHeader">Name</th><th class="tHeader">Work Scope</th><th class="tHeader">Work Scope2</th><th class="tHeader">Lead Senior Analyst</th><th class="tHeader">Lead Analyst</th><th class="">Assessment_Date</th></tr>
+            <tr><th class="tHeader">Name</th><th class="tHeader">Work Scope</th><th class="tHeader">Work Scope2</th><th class="tHeader">Lead Senior Analyst</th><th class="tHeader">Lead Analyst</th><th class="tHeader">Assessment_Date</th></tr>
             {{#rows}}
                 <tr id="{{rowNumber}}" class="spotRow"><td>{{name}}</td><td>{{workscope_1}}</td><td>{{workscope_2}}</td><td>{{leadsenior}}</td><td>{{analyst}}</td><td>{{assessment_date}}</td>
                 </tr>
@@ -68,8 +68,7 @@
             <h4 class="fauxButton">City</h4>
             <h2>{{name}}</h2>
             <p class="colorText">{{assessment_date}}<p>
-            // <p class="colorText">{{workscope_1}}, {{workscope_2}}, {{leadsenior}}, {{analyst}}</p>
-            <p class="colorText">{{city}}{{#state}}, {{state}}{{/state}}{{#postcode}}, {{postcode}}{{/postcode}}</p>
+            <p class="colorText">{{workscope_1}}, {{workscope_2}}, {{leadsenior}}, {{analyst}}</p>
             <ul>
                 <li><span class="category">Work Scope:</span> {{workscope_1}}</li>
                 <li><span class="category">Work Scope2:</span> {{workscope_2}}</li>
@@ -85,8 +84,7 @@
             <h4 class="fauxButton">SELECTED SPOT</h4>
             <h2>{{name}}</h2>
             <p class="colorText">{{assessment_date}}<p>
-            // <p class="colorText">{{workscope_1}}, {{workscope_2}}, {{leadsenior}}, {{analyst}}</p>
-            <p class="colorText">{{city}}{{#state}}, {{state}}{{/state}}{{#postcode}}, {{postcode}}{{/postcode}}</p>
+            <p class="colorText">{{workscope_1}}, {{workscope_2}}, {{leadsenior}}, {{analyst}}</p>
             <ul>
                 <li><span class="category">Work Scope:</span> {{workscope_1}}</li>
                 <li><span class="category">Work Scope2:</span> {{workscope_2}}</li>
