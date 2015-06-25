@@ -40,7 +40,7 @@
             <input id="tableFilter" type="text" placeholder="filter by.."></input>
             <span class="clear button">Clear</span> <span class="resetMap button">Reset Map</span>
             <span class="noMatches">no matches</span>
-            <div id="hackSpotsTable"></div>
+            <div id="assignmentsTable"></div>
         </div>
         <div id="info" class="container">
             <!--
@@ -53,7 +53,7 @@
         </div>
     </div><!-- end wrapper -->
 
-    <script id="hackSpotsTable" type="text/html">
+    <script id="assignmentsTable" type="text/html">
         <table>
             <tr><th class="tHeader">Name</th><th class="tHeader">Work Scope</th><th class="tHeader">Work Scope2</th><th class="tHeader">Lead Senior Analyst</th><th class="tHeader">Lead Analyst</th><th class="">Assessment_Date</th></tr>
             {{#rows}}
@@ -104,7 +104,7 @@
         function showInfo(gData) {
             tableOptions = {
                 "data": gData,
-                "tableDiv": "#hackSpotsTable",
+                "tableDiv": "#assignmentsTable",
                 "filterDiv": "#tableFilter"
             }
             // make the table, and the search bar
