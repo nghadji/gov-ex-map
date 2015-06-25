@@ -118,7 +118,7 @@
             // create map, tilelayer (map background), markers and popups
             var map = Sheetsee.loadMap("map")
             Sheetsee.addTileLayer(map, 'examples.map-20v6611k')
-            var markerLayer = Sheetsee.addMarkerLayer(geoJSON, map, "<h2>{{ name }} <br> {{ws1}} <br> {{leadsenior}} <br> {{analyst}}</h2>")
+            var markerLayer = Sheetsee.addMarkerLayer(geoJSON, map, "<h1>{{ name }}</h1> <br>Work Scope:{{ws1}} <br>Lead Senior Analyst: {{leadsenior}} <br> Lead Analyst: {{analyst}}")
 
             // find the latest spot with the most important
             // info filled in (to prevent map breaking if
