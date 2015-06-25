@@ -19,7 +19,7 @@
     </head>
 <body>
     <div id="wrapper">
-        <h1>Staffing Assignments</h1>
+        <h2>Staffing Assignments</h2>
         <div>
             <ul class="nav">
                 <li><strong>GovEx</strong></li>
@@ -55,7 +55,8 @@
         <table>
             <tr><th class="tHeader">Name</th><th class="tHeader">Work Scope</th><th class="tHeader">Work Scope2</th><th class="tHeader">Lead Senior Analyst</th><th class="tHeader">Lead Analyst</th><th class="tHeader">Assessment_Date</th></tr>
             {{#rows}}
-                <tr id="{{rowNumber}}" class="spotRow"><td>{{name}}</td><td>{{workscope_1}}</td><td>{{workscope_2}}</td><td>{{leadsenior}}</td><td>{{analyst}}</td><td>{{assessment_date}}</td>
+                <tr id="{{rowNumber}}" class="spotRow">
+                <td>{{name}}</td><td>{{workscope_1}}</td><td>{{workscope_2}}</td><td>{{leadsenior}}</td><td>{{analyst}}</td><td>{{assessment_date}}</td>
                 </tr>
             {{/rows}}
         </table>
@@ -117,7 +118,7 @@
             // create map, tilelayer (map background), markers and popups
             var map = Sheetsee.loadMap("map")
             Sheetsee.addTileLayer(map, 'examples.map-20v6611k')
-            var markerLayer = Sheetsee.addMarkerLayer(geoJSON, map, "<h2>{{ name }}</h2>")
+            var markerLayer = Sheetsee.addMarkerLayer(geoJSON, map, "<h2>{{ name }} {{workscope_1}} {{leadsenior}} {{analyst}}</h2>")
 
             // find the latest spot with the most important
             // info filled in (to prevent map breaking if
