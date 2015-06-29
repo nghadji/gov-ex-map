@@ -127,8 +127,8 @@
             var geoJSON = Sheetsee.createGeoJSON(gData, optionsJSON)
 
             // create map, tilelayer (map background), markers and popups
-            var map = Sheetsee.loadMap("map")
-            zoom = 5
+            var map = Sheetsee.loadMap("map"),
+            zoom = 5,
             Sheetsee.addTileLayer(map, 'examples.map-h67hf2ic')
             var markerLayer = Sheetsee.addMarkerLayer(geoJSON, map, "<h1>{{ name }} <br>Work Scope: {{ws1}} <br>Lead Senior Analyst: {{leadsenior}} <br> Lead Analyst: {{analyst}} <br> Other: {{other}} </h1>")
 
