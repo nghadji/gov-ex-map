@@ -36,16 +36,7 @@
                 <div id="selectedSpot"></div>
             </div>
             <div id="map">
-                  <style>
-                    body {
-                        padding: 0;
-                        margin: 0;
-                         }
-                 html, body, #map {
-                        height: 100%;
-                        width: 100%;
-                        }
-	                </style>
+                <style> { height: 100%; width: 100%} </style>
             </div>    
         </div>
         <div class="container">
@@ -68,7 +59,7 @@
             <tr><th class="tHeader">Name</th><th class="tHeader">Work Scope</th><th class="tHeader">Work Scope2</th><th class="tHeader">Lead Senior Analyst</th><th class="tHeader">Lead Analyst</th><th class="tHeader">Assessment_Date</th></tr>
             {{#rows}}
                 <tr id="{{rowNumber}}" class="spotRow">
-                <td>{{name}}</td><td>{{ws1}}</td><td>{{ws2}}</td><td>{{leadsenior}}</td><td>{{analyst}}</td><td>{{date}}</td>
+                <td>{{name}}</td><td>{{ws1}}</td><td>{{ws2}}</td><td>{{leadsenior}}</td><td>{{analyst}}</td><td>{{other}}</td><td>{{date}}</td>
                 </tr>
             {{/rows}}
         </table>
@@ -78,12 +69,13 @@
         {{#rows}}
             <h4 class="fauxButton">City</h4>
             <h2>{{name}}</h2>
-            <p class="colorText">{{ws1}}, {{ws2}}, {{leadsenior}}, {{analyst}}, {{date}}</p>
+            <p class="colorText">{{ws1}}, {{ws2}}, {{leadsenior}}, {{analyst}}, {{other}}, {{date}}</p>
             <ul>
                 <li><span class="category">Work Scope:</span> {{ws1}}</li>
                 <li><span class="category">Work Scope2:</span> {{ws2}}</li>
                 <li><span class="category">Lead Senior Analyst:</span> {{leadsenior}}</li>
                 <li><span class="category">Lead Analyst:</span> {{analyst}}</li>
+                <li><span class="category">Other:</span> {{other}}</li>
                 <li><span class="category">Assessment_Date:</span> {{date}}</li>
             </ul>
         {{/rows}}
@@ -93,12 +85,13 @@
         {{#rows}}
             <h4 class="fauxButton">SELECTED SPOT</h4>
             <h2>{{name}}</h2>
-            <p class="colorText">{{ws1}}, {{ws2}}, {{leadsenior}}, {{analyst}}, {{date}}</p>
+            <p class="colorText">{{ws1}}, {{ws2}}, {{leadsenior}}, {{analyst}}, {{other}}, {{date}}</p>
             <ul>
                 <li><span class="category">Work Scope:</span> {{ws1}}</li>
                 <li><span class="category">Work Scope2:</span> {{ws2}}</li>
                 <li><span class="category">Lead Senior Analyst:</span> {{leadsenior}}</li>
                 <li><span class="category">Lead Analyst:</span> {{analyst}}</li>
+                <li><span class="category">Other:</span> {{other}}</li>
                 <li><span class="category">Assessment_Date:</span> {{date}}</li>
             </ul>
         {{/rows}}
@@ -124,13 +117,13 @@
 
             // create geoJSON with coordinates and other
             // useful bits from the original data
-            var optionsJSON = ["name", "lat_long", "ws1", "ws2", "leadsenior", "analyst", "date", "rowNumber"]
+            var optionsJSON = ["name", "lat_long", "ws1", "ws2", "leadsenior", "analyst", "date", "other", "rowNumber"]
             var geoJSON = Sheetsee.createGeoJSON(gData, optionsJSON)
 
             // create map, tilelayer (map background), markers and popups
             var map = Sheetsee.loadMap("map")
             Sheetsee.addTileLayer(map, 'examples.map-h67hf2ic')
-            var markerLayer = Sheetsee.addMarkerLayer(geoJSON, map, "<h1>{{ name }} <br>Work Scope: {{ws1}} <br>Lead Senior Analyst: {{leadsenior}} <br> Lead Analyst: {{analyst}} </h1>")
+            var markerLayer = Sheetsee.addMarkerLayer(geoJSON, map, "<h1>{{ name }} <br>Work Scope: {{ws1}} <br>Lead Senior Analyst: {{leadsenior}} <br> Lead Analyst: {{analyst}} <br> Other: {{other}} </h1>")
 
             // find the latest spot with the most important
             // info filled in (to prevent map breaking if
@@ -167,7 +160,7 @@
                 var latestCompleteSpot = []
                 var startWithLatestRow = data.reverse()
                 startWithLatestRow.forEach(function(row){
-                    if (!row.lat || !row.long || !row.name || !row.leadsenior || !row.analyst || !row.workscope_1 || !row.workscope_2 || !row.assessment_date ) return
+                    if (!row.lat || !row.long || !row.name || !row.leadsenior || !row.analyst || !row.workscope_1 || !row.workscope_2 || !row.assessment_date || !row.other) return
                     else latestCompleteSpot.push(row)
                 })
                 return latestCompleteSpot[0]
