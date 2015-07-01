@@ -133,13 +133,13 @@
             // find the latest spot with the most important
             // info filled in (to prevent map breaking if
             // someone is currently editing spreadsheet)
-            var theLatestSpot = findLatestCompleteSpot(gData)
-            var latestSpot = Sheetsee.ich.latestSpot({
-                rows: theLatestSpot
-            })
-            // set it and pan to it
-            $('#latestSpot').html(latestSpot)
-            map.setView([theLatestSpot.lat, theLatestSpot.long], 14)
+            // var theLatestSpot = findLatestCompleteSpot(gData)
+            // var latestSpot = Sheetsee.ich.latestSpot({
+            //     rows: theLatestSpot
+            // })
+            // // set it and pan to it
+            // $('#latestSpot').html(latestSpot)
+            // map.setView([theLatestSpot.lat, theLatestSpot.long], 14)
 
             // when someone clicks on a row, highlight it and
             // re-center the map
@@ -152,7 +152,7 @@
                 var selectedSpot = Sheetsee.ich.selectedSpot({
                     rows: dataElement
                 })
-                $('#latestSpot').css("display", "none")
+                // $('#latestSpot').css("display", "none")
                 $('#selectedSpot').html(selectedSpot).css("display", "inline")
                 var selectedCoords = [dataElement[0].lat, dataElement[0].long]
                 map.setView(selectedCoords, 14)
@@ -161,15 +161,15 @@
             // so that the first map and info that loads
             // is complete and doesn't show rows that are
             // actively being edited by folk
-            function findLatestCompleteSpot(data) {
-                var latestCompleteSpot = []
-                var startWithLatestRow = data.reverse()
-                startWithLatestRow.forEach(function(row){
-                    if (!row.lat || !row.long || !row.name || !row.leadsenior || !row.analyst || !row.workscope_1 || !row.workscope_2 || !row.assessment_date || !row.other) return
-                    else latestCompleteSpot.push(row)
-                })
-                return latestCompleteSpot[0]
-            }
+            // function findLatestCompleteSpot(data) {
+            //     var latestCompleteSpot = []
+            //     var startWithLatestRow = data.reverse()
+            //     startWithLatestRow.forEach(function(row){
+            //         if (!row.lat || !row.long || !row.name || !row.leadsenior || !row.analyst || !row.workscope_1 || !row.workscope_2 || !row.assessment_date || !row.other) return
+            //         else latestCompleteSpot.push(row)
+            //     })
+            //     return latestCompleteSpot[0]
+            // }
 
             // Add click listener to the markerLayer
             markerLayer.on('click', function(e) {
@@ -188,14 +188,14 @@
                 // center the map on the selected element
                 map.panTo([dataElement[0].lat, dataElement[0].long])
                 // update the spot listing
-                $('#latestSpot').css("display", "none")
+                // $('#latestSpot').css("display", "none")
                 $('#selectedSpot').html(selectedSpot).css("display", "inline")
             })
 
             // reset the map, zoom out, and recenter on 0,0
             $('.resetMap').click(function() {
                 $('.spotRow').removeClass("selectedRow")
-                $('#latestSpot').css("display", "inline")
+                // $('#latestSpot').css("display", "inline")
                 $('#selectedSpot').css("display", "none")
                 map.setView([0,0], 1)
             })
